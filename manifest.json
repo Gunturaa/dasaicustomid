@@ -1,0 +1,29 @@
+{
+  "name": "Dasai Custom OS",
+  "version": "2.1.0",
+  "home_assistant_domain": "esphome",
+  "new_install_prompt_erasable": true,
+  "builds": [
+    {
+      "chipFamily": "ESP32-C3",
+      "parts": [
+        {
+          "path": "firmware/bootloader.bin",
+          "offset": 0
+        },
+        {
+          "path": "firmware/partitions.bin",
+          "offset": 32768
+        },
+        {
+          "path": "firmware/firmware.bin",
+          "offset": 65536
+        },
+        {
+          "path": "firmware/spiffs.bin",
+          "offset": 3211264
+        }
+      ]
+    }
+  ]
+}

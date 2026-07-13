@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasai Custom OS - Firmware Installer</title>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <!-- ESP Web Tools -->
+    <script type="module" src="https://unpkg.com/esp-web-tools@9.4.0/dist/web/install-button.js?module"></script>
+    <!-- Three.js for 3D Viewer -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- TOP NAVBAR -->
+        <header class="top-navbar">
+
+            <!-- Kiri: Logo & Brand -->
+            <div class="logo-area">
+                <div class="dasai-face-small">
+                    <div class="eye"></div>
+                    <div class="mouth"></div>
+                    <div class="eye"></div>
+                </div>
+                <div class="brand-text">
+                    DASAI<span>OS</span> <span class="version-badge">v2.1.0</span>
+                </div>
+            </div>
+
+            <!-- Tengah: Tab Navigasi -->
+            <nav class="tabs">
+                <button class="tab-btn active" data-target="features" onclick="switchTab('features')">Fungsi
+                    Utama</button>
+                <button class="tab-btn" data-target="config" onclick="switchTab('config')">Tutorial</button>
+                <button class="tab-btn" data-target="wiring" onclick="switchTab('wiring')">Pengkabelan</button>
+                <button class="tab-btn" data-target="3d-model" onclick="switchTab('3d-model')">Model 3D</button>
+                <button class="tab-btn" data-target="notes" onclick="switchTab('notes')">Update</button>
+            </nav>
+
+            <!-- Kanan: Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn btn-config" onclick="switchTab('config')">⚙️ Siapkan Dasai</button>
+                <div class="install-wrapper">
+                    <esp-web-install-button manifest="manifest.json">
+                        <button slot="activate" class="btn btn-install">🚀 Install v2.1.0</button>
+                        <span slot="unsupported" class="error-text">Chrome PC Only.</span>
+                        <span slot="not-allowed" class="error-text">Web Serial Ditolak.</span>
+                    </esp-web-install-button>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- Alert Banner -->
+            <div class="alert-banner">
+                <span>⚠️ <strong>Follow Tiktok IotXDev!</strong> untuk mendapatkan update fitur terbaru dan
+                    dukungan dari kreator.</span>
+            </div>
+
+            <!-- Tab Content Area -->
+            <div class="tab-container">
+
+                <!-- FEATURES TAB -->
+                <div id="features" class="tab-pane active">
+                    <div class="grid-cards">
+                        <div class="card">
+                            <div class="card-icon">🤖</div>
+                            <h3>Ekspresi Dasai OS</h3>
+                            <p>Lebih dari 50 efek animasi yang bereaksi terhadap sentuhan Anda. Ciptakan pengalaman
+                                dasbor hidup dengan kecepatan dan jeda yang disesuaikan.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">📱</div>
+                            <h3>Sinkronisasi Chronos</h3>
+                            <p>Terhubung dengan HP via Bluetooth (Aplikasi Chronos). Dapatkan info Cuaca dan
+                                sinkronisasi real-time kapanpun.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">👆</div>
+                            <h3>Menu 3-Tap Interaktif</h3>
+                            <p>Sentuh 3 kali untuk masuk ke menu rahasia. Anda dapat mengatur Bluetooth, layar Invert
+                                Color, dan Sleep Mode seketika.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">🗺️</div>
+                            <h3>Petunjuk Arah Maps</h3>
+                            <p>Menampilkan panah arah, jarak, dan estimasi waktu langsung di layar OLED Anda saat
+                                menggunakan navigasi Google Maps di HP.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">⏰</div>
+                            <h3>Tampilan Jam Pintar</h3>
+                            <p>Jam presisi tinggi yang terkalibrasi dengan HP Anda. Selalu update dan sinkron meski Anda
+                                sedang mematikan Bluetooth.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">💬</div>
+                            <h3>Notifikasi Panggilan & Aplikasi</h3>
+                            <p>Menampilkan ID penelepon, pesan WhatsApp, Instagram, dan notifikasi aplikasi lainnya
+                                langsung di layar mungil Anda.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONFIG TAB -->
+                <div id="config" class="tab-pane">
+                    <div class="content-panel">
+                        <h2>Tutorial Mengonfigurasi Dasai</h2>
+                        <p>Dasai Custom OS memiliki fitur Web Serial. Anda tidak perlu membongkar hardware hanya untuk
+                            mengganti pin.</p>
+                        <ol class="custom-list">
+                            <li>Buka web konfigurasi <strong>DASAI</strong>.</li>
+                            <li>Pilih PIN yang ingin anda ubah</li>
+                            <li>Klik Save Config dan Reboot untuk merestart ESP32 agar perubahan diterapkan.</li>
+                            <li>Pasang aplikasi <strong>Chronos</strong> di Android untuk melakukan pair Bluetooth agar
+                                mendapat notifikasi & cuaca.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- WIRING TAB -->
+                <div id="wiring" class="tab-pane">
+                    <div class="content-panel">
+                        <h2>Diagram Pengkabelan (ESP32-C3)</h2>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Komponen</th>
+                                    <th>Pin Default ESP32-C3</th>
+                                    <th>Keterangan Tambahan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>OLED SDA</td>
+                                    <td>GPIO 8</td>
+                                    <td>Dapat diubah via Web Config</td>
+                                </tr>
+                                <tr>
+                                    <td>OLED SCL</td>
+                                    <td>GPIO 9</td>
+                                    <td>Dapat diubah via Web Config</td>
+                                </tr>
+                                <tr>
+                                    <td>OLED VCC & GND</td>
+                                    <td>3.3V / GND</td>
+                                    <td>Pastikan suplai daya stabil</td>
+                                </tr>
+                                <tr>
+                                    <td>TTP223 Sensor Sentuh</td>
+                                    <td>GPIO 21</td>
+                                    <td>Sinyal (I/O) TTP223 ke Pin ini</td>
+                                </tr>
+                                <tr>
+                                    <td>LED Merah (Police)</td>
+                                    <td>GPIO 4</td>
+                                    <td>Blink saat animasi Polisi</td>
+                                </tr>
+                                <tr>
+                                    <td>LED Biru (Police)</td>
+                                    <td>GPIO 5</td>
+                                    <td>Blink saat animasi Polisi</td>
+                                </tr>
+                                <tr>
+                                    <td>Buzzer (Pasif/Aktif)</td>
+                                    <td>GPIO 22</td>
+                                    <td>Berbunyi saat notif, intro, dan animasi</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 3D MODEL TAB -->
+                <div id="3d-model" class="tab-pane">
+                    <div class="content-panel">
+                        <h2>Model 3D (Casing Dasai)</h2>
+                        <p>Silakan pilih model 3D di bawah ini untuk melihat pratinjau atau mengunduh file STL-nya.</p>
+
+                        <div class="model-actions">
+                            <div class="model-item">
+                                <div class="model-info">
+                                    <span class="model-name">dasai.stl</span>
+                                    <span class="model-credit">Custom: <strong>Petir</strong></span>
+                                </div>
+                                <div class="model-btns">
+                                    <button class="btn btn-view" onclick="loadSTL('dasai.stl')">👁️ View</button>
+                                    <a href="assets/dasai.stl" download class="btn btn-download">⬇️ Download</a>
+                                </div>
+                            </div>
+
+                            <div class="model-item">
+                                <div class="model-info">
+                                    <span class="model-name">Dasai Mochi LBW Helmet.stl</span>
+                                    <span class="model-credit">Didesain oleh: <strong>John Angelo Dela
+                                            Cruz</strong></span>
+                                </div>
+                                <div class="model-btns">
+                                    <button class="btn btn-view" onclick="loadSTL('Dasai Mochi LBW Helmet.stl')">👁️
+                                        View</button>
+                                    <a href="assets/Dasai Mochi LBW Helmet.stl" download class="btn btn-download">⬇️
+                                        Download</a>
+                                </div>
+                            </div>
+                            <div class="model-item">
+                                <div class="model-info">
+                                    <span class="model-name">Dasai Mochi LBW Helmet base.stl</span>
+                                    <span class="model-credit">Didesain oleh: <strong>John Angelo Dela
+                                            Cruz</strong></span>
+                                </div>
+                                <div class="model-btns">
+                                    <button class="btn btn-view"
+                                        onclick="loadSTL('Dasai Mochi LBW Helmet base.stl')">👁️
+                                        View</button>
+                                    <a href="assets/Dasai Mochi LBW Helmet base.stl" download
+                                        class="btn btn-download">⬇️
+                                        Download</a>
+                                </div>
+                            </div>
+
+                            <div class="model-item">
+                                <div class="model-info">
+                                    <span class="model-name">GTR Liberty Walk.stl</span>
+                                    <span class="model-credit">Didesain oleh: <strong>John Angelo Dela
+                                            Cruz</strong></span>
+                                </div>
+                                <div class="model-btns">
+                                    <button class="btn btn-view" onclick="loadSTL('GTR Liberty Walk .stl')">👁️
+                                        View</button>
+                                    <a href="assets/GTR Liberty Walk .stl" download class="btn btn-download">⬇️
+                                        Download</a>
+                                </div>
+                            </div>
+
+                            <div class="model-item">
+                                <div class="model-info">
+                                    <span class="model-name">Dasai.stl</span>
+                                    <span class="model-credit">Custom: <strong>Petir</strong></span>
+                                </div>
+                                <div class="model-btns">
+                                    <button class="btn btn-view" onclick="loadSTL('DasaiGunturaa.stl')">👁️
+                                        View</button>
+                                    <a href="assets/DasaiGunturaa.stl" download class="btn btn-download">⬇️ Download</a>
+                                </div>
+                            </div>
+                            <div class="model-item">
+                                <div class="model-info">
+                                    <span class="model-name">tiviv2.zip</span>
+                                    <span class="model-credit">Didesain oleh: <strong>Tan Nguyen</strong></span>
+                                </div>
+                                <div class="model-btns">
+                                    <button class="btn btn-view" onclick="loadSTL('tiviv2.zip')">👁️ View</button>
+                                    <a href="assets/tiviv2.zip" download class="btn btn-download">⬇️ Download</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="model-item">
+                            <div class="model-info">
+                                <span class="model-name">Ingenious Kup.stl</span>
+                                <span class="model-credit">Didesain oleh: <strong>---</strong></span>
+                            </div>
+                            <div class="model-btns">
+                                <button class="btn btn-view" onclick="loadSTL('Ingenious Kup.stl')">👁️ View</button>
+                                <a href="assets/Ingenious Kup.stl" download class="btn btn-download">⬇️ Download</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="model-container">
+                        <div id="3d-canvas"></div>
+                        <div class="model-overlay">Drag untuk memutar. Scroll untuk zoom.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RELEASE NOTES TAB -->
+            <div id="notes" class="tab-pane">
+                <div class="content-panel">
+                    <h2>Catatan Perubahan</h2>
+
+                    <div class="timeline-box">
+                        <h3 class="version-title">v2.1.0 (Versi Saat Ini)</h3>
+                        <ul>
+                            <li>Sistem <strong>Menu Mode</strong> diakses via Triple Tap (3x Sentuh).</li>
+                            <li>Pilihan Invert Color untuk membalik warna OLED dan animasi.</li>
+                            <li>Penambahan Sleep Mode untuk mematikan OLED tanpa cabut kabel.</li>
+                            <li>Bluetooth dapat dimatikan manual untuk hemat baterai.</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-box">
+                        <h3 class="version-title">v2.0.0</h3>
+                        <ul>
+                            <li>Sinkronisasi Cuaca & Waktu via Chronos.</li>
+                            <li>Notifikasi Handphone (WA, IG, SMS).</li>
+                            <li>Fitur Turn-by-turn Navigation.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+    </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
