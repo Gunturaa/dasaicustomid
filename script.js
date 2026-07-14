@@ -2,7 +2,7 @@
 function switchTab(tabId) {
     // Update active tab button
     document.querySelectorAll('.tab-btn').forEach(btn => {
-        if(btn.dataset.target === tabId) {
+        if (btn.dataset.target === tabId) {
             btn.classList.add('active');
         } else {
             btn.classList.remove('active');
@@ -11,7 +11,7 @@ function switchTab(tabId) {
 
     // Update active pane
     document.querySelectorAll('.tab-pane').forEach(pane => {
-        if(pane.id === tabId) {
+        if (pane.id === tabId) {
             pane.classList.add('active');
         } else {
             pane.classList.remove('active');
@@ -19,7 +19,7 @@ function switchTab(tabId) {
     });
 
     // If switching to 3d-model, resize event might be needed to fix canvas size if it was hidden
-    if(tabId === '3d-model') {
+    if (tabId === '3d-model') {
         setTimeout(() => {
             window.dispatchEvent(new Event('resize'));
         }, 100);
@@ -33,7 +33,7 @@ function init3DViewer() {
 
     // Scene
     const scene = new THREE.Scene();
-    
+
     let width = container.clientWidth || 800;
     let height = container.clientHeight || 600;
 
@@ -74,9 +74,9 @@ function init3DViewer() {
     scene.add(gridHelper);
 
     // Material for STL
-    const material = new THREE.MeshPhongMaterial({ 
-        color: 0x111111, 
-        specular: 0x00f3ff, 
+    const material = new THREE.MeshPhongMaterial({
+        color: 0x111111,
+        specular: 0x00f3ff,
         shininess: 100,
         flatShading: true
     });
@@ -110,7 +110,7 @@ function init3DViewer() {
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', init3DViewer);
 
-window.loadSTL = function(filename) {
+window.loadSTL = function (filename) {
     if (!window.stlScene) return;
 
     // Remove existing mesh if present
@@ -120,7 +120,7 @@ window.loadSTL = function(filename) {
         if (window.currentMesh.geometry) window.currentMesh.geometry.dispose();
         window.currentMesh = null;
     }
-    
+
     const loader = new THREE.STLLoader();
     loader.load(
         'assets/' + filename,
@@ -128,8 +128,8 @@ window.loadSTL = function(filename) {
             geometry.center();
             geometry.computeVertexNormals();
             const mesh = new THREE.Mesh(geometry, window.stlMaterial);
-            mesh.scale.set(0.5, 0.5, 0.5); 
-            
+            mesh.scale.set(0.5, 0.5, 0.5);
+
             const wireframe = new THREE.WireframeGeometry(geometry);
             const line = new THREE.LineSegments(wireframe);
             line.material.depthTest = false;
@@ -148,12 +148,12 @@ window.loadSTL = function(filename) {
             console.warn("STL not found: " + filename + ", showing placeholder.");
             const boxGeo = new THREE.BoxGeometry(30, 30, 30);
             const mesh = new THREE.Mesh(boxGeo, window.stlMaterial);
-            
+
             const wireGeo = new THREE.WireframeGeometry(boxGeo);
             const line = new THREE.LineSegments(wireGeo);
             line.material.color.setHex(0x00f3ff);
             mesh.add(line);
-            
+
             window.stlScene.add(mesh);
             window.currentMesh = mesh;
         }
