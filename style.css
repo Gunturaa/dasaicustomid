@@ -183,6 +183,19 @@ body {
     box-shadow: 0 0 20px var(--neon-blue-glow);
 }
 
+.btn-disabled {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    border: 1px dashed var(--text-muted);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.btn-disabled:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+}
+
 .error-text {
     font-size: 0.75rem;
     color: #ff4d4d;

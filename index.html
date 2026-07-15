@@ -49,14 +49,17 @@
 
             <!-- Kanan: Action Buttons -->
             <div class="action-buttons">
-                <button class="btn btn-config" onclick="window.open('https://dasaiconfigid.vercel.app/', '_blank')">⚙️ Siapkan Dasai</button>
+                <button class="btn btn-config" onclick="window.open('https://dasaiconfigid.vercel.app/', '_blank')">⚙️
+                    Siapkan Dasai</button>
                 <div class="install-wrapper">
                     <esp-web-install-button manifest="manifest.json">
-                        <button slot="activate" class="btn btn-install">🚀 Install v2.1.0</button>
+                        <button slot="activate" class="btn btn-install">🚀 Install Dasai Mochi</button>
                         <span slot="unsupported" class="error-text">Chrome PC Only.</span>
                         <span slot="not-allowed" class="error-text">Web Serial Ditolak.</span>
                     </esp-web-install-button>
                 </div>
+                <button class="btn btn-disabled" disabled title="Masih dalam tahap pengembangan">🚀 Xiaozhi ID (Coming
+                    Soon)</button>
             </div>
 
         </header>
